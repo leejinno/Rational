@@ -44,4 +44,69 @@ public class RationalTest {
         r1 = null;
         r2 = null;
     }
+
+    @Test
+    public void testSubtract() {
+        r1.numerator = 1;
+        r1.denominator = 2;
+        r2.numerator = 1;
+        r2.denominator = 4;
+        // 1/2 - 1/4 = 1/4
+        r1.subtract(r2);
+        // Expect the output in r1 to contain 1/4
+        Assert.assertEquals(1, r1.numerator);
+        Assert.assertEquals(4, r1.denominator);
+    }
+
+    @Test
+    public void testMultiply() {
+        r1.numerator = 1;
+        r1.denominator = 2;
+        r2.numerator = 1;
+        r2.denominator = 4;
+        r1.multiply(r2);
+        Assert.assertEquals(1, r1.numerator);
+        Assert.assertEquals(8, r1.denominator);
+    }
+
+    @Test
+    public void testDivide() {
+        r1.numerator = 1;
+        r1.denominator = 2;
+        r2.numerator = 1;
+        r2.denominator = 4;
+        r1.divide(r2);
+        Assert.assertEquals(2, r1.numerator);
+        Assert.assertEquals(1, r1.denominator);
+    }
+
+    @Test
+    public void equals() {
+        r1.numerator = 1;
+        r1.denominator = 2;
+        r2.numerator = 2;
+        r2.denominator = 4;
+        Assert.assertTrue(r2.equals(r1));
+    }
+
+    @Test
+    public void compareTo() {
+        r1.numerator = 1;
+        r1.denominator = 2;
+        r2.numerator = 1;
+        r2.denominator = 4;
+        Assert.assertTrue(r1.compareTo(r2) == 1);
+    }
+
+    @Test
+    public void toStringTest() {
+        Rational r1 = new Rational();
+        r1.numerator = 1;
+        r1.denominator = 2;
+        r1.toString();
+        Assert.assertTrue(r1.toString().equals(""));
+    }
+
+
 }
+

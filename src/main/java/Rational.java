@@ -1,11 +1,11 @@
-class Rational { 
-    long numerator,denominator; 
+class Rational {
+    long numerator,denominator;
 
-    class Illegal extends Exception { 
-        String reason; 
-        Illegal (String reason) { 
-            this.reason = reason; 
-        } 
+    class Illegal extends Exception {
+        String reason;
+        Illegal (String reason) {
+            this.reason = reason;
+        }
     }
 
     /***
@@ -21,7 +21,7 @@ class Rational {
      * @param denominator the value of the denominator
      * @throws Illegal will throw Illegal when wrong inputs are given
      */
-    Rational(long numerator, long denominator) throws Illegal { 
+    Rational(long numerator, long denominator) throws Illegal {
         // to be completed
     }
 
@@ -29,29 +29,29 @@ class Rational {
      * find the simplest form of a Rational number
      * E.g., 2/4 ==> 1/2, 4/6 ==> 2/3
      */
-    private void simplestForm() { 
-        long computeGCD; 
-        computeGCD = GCD(Math.abs(numerator), denominator); 
-        numerator /= computeGCD; 
-        denominator /= computeGCD; 
+    private void simplestForm() {
+        long computeGCD;
+        computeGCD = GCD(Math.abs(numerator), denominator);
+        numerator /= computeGCD;
+        denominator /= computeGCD;
     }
 
     /***
      * find the greatest common denominator
      */
-    private long GCD(long a, long b) { 
-        if (a%b ==0) return b; 
-        else return GCD(b,a%b); 
+    private long GCD(long a, long b) {
+        if (a%b ==0) return b;
+        else return GCD(b,a%b);
     }
 
     /***
      * Compute an addition of the current rational number to another given rational number
      * @param x the rational number to be added to the current rational number
      */
-    public void add(Rational x) { 
+    public void add(Rational x) {
         numerator = (numerator * x.denominator) + (x.numerator * denominator);
-        denominator = (denominator * x.denominator); 
-        simplestForm(); 
+        denominator = (denominator * x.denominator);
+        simplestForm();
     }
 
     /***
@@ -60,14 +60,20 @@ class Rational {
      */
     public void subtract(Rational x) {
         // to be completed
+        numerator = (numerator * x.denominator) - (x.numerator * denominator);
+        denominator = (denominator * x.denominator);
+        simplestForm();
     }
 
     /***
      * Compute a multiplication of the current rational number to another given rational number
      * @param x the rational number to be multiplied to the current rational number
      */
-    public void multiply(Rational x) { 
+    public void multiply(Rational x) {
         // to be completed
+        numerator = (numerator * x.numerator);
+        denominator = (denominator * x.denominator);
+        simplestForm();
     }
 
     /***
@@ -76,6 +82,9 @@ class Rational {
      */
     public void divide(Rational x) {
         // to be completed
+        numerator = (numerator * x.denominator);
+        denominator = (denominator * x.numerator);
+        simplestForm();
     }
 
     /***
@@ -85,6 +94,15 @@ class Rational {
      */
     public boolean equals(Object x) {
         // to be completed
+        if (this == x) return true;  // same object
+        if (!(x instanceof Rational)) return false; // not a Rational
+
+        Rational y = (Rational) x;
+
+        // if not equal, exit early
+        if (this.numerator * y.denominator != this.denominator * y.numerator) {
+            return false;
+        }
         return true; // TODO: This needs to be modified.
     }
 
@@ -96,6 +114,17 @@ class Rational {
      */
     public long compareTo(Object x) {
         // to be completed
+        Rational y = (Rational) x;
+
+        long left = this.numerator * y.denominator;
+        long right = y.numerator * this.denominator;
+
+        if (left > right) {
+            return 1;
+        } else if (left == right) {
+            return 0;
+        }
+
         return -1; // TODO: this needs to be modified.
     }
 
@@ -103,8 +132,11 @@ class Rational {
      * Give the formatted string of the rational number
      * @return the string representation of the rational number. For example, "1/2", "3/4".
      */
-    public String toString() { 
+    public String toString() {
         // to be completed
+        if (denominator != 1) {
+            System.out.println(numerator + "/" + denominator);
+        }
         return ""; // TODO: This needs to be modified.
     }
 
